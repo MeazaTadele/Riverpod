@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_project/providers/itemproviders.dart'; // Make sure this import points to your actual provider file
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,7 +40,7 @@ class adminAddPost extends ConsumerWidget {
                 ),
               ),
               SizedBox(height: 30),
-              AttachImageButton(),  // Just use the widget without passing ref
+              AttachImageButton(),  // Custom widget to attach an image
               if (imageUrl.isNotEmpty)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
@@ -46,19 +48,24 @@ class adminAddPost extends ConsumerWidget {
                 ),
               SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {
-                  // ref.read(postprovider.notifier).addpost(
-                  //   DateTime.now().toString(), // Generating an ID based on the current time
-                  //   descriptionController.text,
-                  //   imageUrl
-                  // );
-                  // // Clear the inputs after posting
-                  // locationController.clear();
-                  // timeController.clear();
-                  // descriptionController.clear();
-                  // ref.read(imageProvider.notifier).state = '';  // Clear the image URL
+                onPressed: () async {
+                  if (descriptionController.text.isEmpty || imageUrl.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please enter a description and attach an image.')));
+                    return;
+                  }
+                  try {
+                    Uint8List imageData = await File(imageUrl).readAsBytes();
+                    await ref.read(postProvider.notifier).createPost(descriptionController.text, imageData);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Post created successfully!')));
+
+                    // Clear the form fields after successful post creation
+                    descriptionController.clear();
+                    ref.read(imageProvider.notifier).state = '';
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to upload post: $e')));
+                  }
                 },
-                child: const Text('Post'),
+                child: Text('Upload Post'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.blue[400],

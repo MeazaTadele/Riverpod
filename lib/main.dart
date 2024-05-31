@@ -9,7 +9,6 @@ import 'package:flutter_project/presentation/screens/create_post_page.dart';
 import 'package:flutter_project/presentation/screens/detailpage.dart';
 import 'package:flutter_project/presentation/screens/login.dart';
 import 'package:flutter_project/presentation/screens/noaccount.dart';
-import 'package:flutter_project/presentation/screens/profile.dart';
 import 'package:flutter_project/presentation/screens/signup.dart';
 import 'package:flutter_project/presentation/screens/userdetailpage.dart';
 import 'package:flutter_project/presentation/screens/withaccount.dart';
@@ -60,10 +59,7 @@ class MyApp extends StatelessWidget {
           path: '/signup',
           builder: (context, state) => SignUpPage(),
         ),
-        GoRoute(
-          path: '/profile',
-          builder: (context, state) => ProfileTwo(),
-        ),
+    
         GoRoute(
           path: '/add',
           builder: (context, state) => LostFoundForm(),

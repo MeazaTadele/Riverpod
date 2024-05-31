@@ -13,7 +13,7 @@ class CommentRepository {
   Future<List<Comment>> fetchComments(String postId) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl/comments/$postId'));
-      print('Fetch Comments Response: ${response.statusCode} ${response.body}'); // Debugging statement
+  
 
       if (response.statusCode == 200) {
         final List<dynamic> commentsJson = json.decode(response.body);
@@ -22,7 +22,7 @@ class CommentRepository {
         throw Exception('Failed to load comments');
       }
     } catch (e) {
-      print('Exception in fetchComments: $e'); // Debugging statement
+  
       throw e;
     }
   }
@@ -38,13 +38,13 @@ class CommentRepository {
           'content': content,
         }),
       );
-      print('Add Comment Response: ${response.statusCode} ${response.body}'); // Debugging statement
+
 
       if (response.statusCode != 201) {
         throw Exception('Failed to add comment');
       }
     } catch (e) {
-      print('Exception in addComment: $e'); // Debugging statement
+
       throw e;
     }
   }

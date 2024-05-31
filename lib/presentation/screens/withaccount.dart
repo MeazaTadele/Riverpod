@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_project/models/items_model.dart';
-import 'package:flutter_project/providers/itemproviders.dart';  // Ensure this file has the correct provider setup
+import 'package:flutter_project/providers/itemproviders.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,7 +10,7 @@ class WithAccount extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final posts = ref.watch(postProvider); 
-     // Watching the posts state managed by Riverpod
+
 
     return Scaffold(
       backgroundColor: Colors.blue[100],
@@ -56,7 +56,6 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Define what happens when a card is tapped
         context.push('/detail/${item.id}');
 
       },
@@ -67,7 +66,7 @@ class GridItem extends StatelessWidget {
             SizedBox(height: 1),
             Expanded(
               child: Image.memory(
-                item.image,  // Ensure the image path is correctly managed
+                item.image, 
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Center(child: Icon(Icons.broken_image, size: 50));
@@ -92,7 +91,7 @@ class GridItem extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Define what happens when the comment button is pressed
+                  
                     context.push('/comment/${item.id}');
                   },
                   child: Icon(Icons.comment),

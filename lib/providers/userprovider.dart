@@ -10,5 +10,5 @@ class UserNotifier extends StateNotifier<User> {
 }
 final userProvider = StateNotifierProvider<UserNotifier, User>((ref) {
   // Initialize with default user or fetch from secure storage
-  return UserNotifier(User(id: '001', name: 'John Doe', email: 'john@example.com', password: 'secure123'));
+  return UserNotifier(User(id: '001', fullname: 'John Doe', email: 'john@example.com', password: 'secure123'));
 });

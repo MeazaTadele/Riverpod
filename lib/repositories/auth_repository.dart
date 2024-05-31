@@ -19,8 +19,11 @@ class AuthRepository {
       body: json.encode(<String, String>{'email': email, 'password': password}),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      return data['token']; // Return the entire response map
+
+      var data = jsonDecode(response.body);
+      return {
+        'token':data['token']
+      }; // Return the entire response map
     } else {
       print('Failed to signup: ${response.statusCode} ${response.body}');
       throw Exception('Failed to signup with status code ${response.statusCode}');
@@ -73,14 +76,14 @@ class AuthRepository {
         'Authorization': 'Bearer $token',
       },
       body: json.encode({
-        'name': name,
+        'fullname': name,
         'email': email,
         'password': password,
       }),
     );
 
     if (response.statusCode != 200) {
-      throw Exception('Failed to update user details');
+      throw Exception('Failed to update user details  ${response.statusCode}');
     }
   }
 

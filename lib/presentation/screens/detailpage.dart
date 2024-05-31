@@ -58,7 +58,7 @@ class ItemPage extends StatelessWidget {
                   children: [
                     Icon(Icons.comment),
                     SizedBox(width: 10),
-                    Text('View Comments')
+                    Text('omments')
                   ],
                 ),
                 style: ElevatedButton.styleFrom(
