@@ -32,7 +32,7 @@ Update: Users can update their posted items by editing the descriptions or addin
 Delete: Users have the ability to remove their posted items if necessary, keeping the repository organized and up-to-date.
 
 - **Feature 2**: Comment Section
-- 
+
 Create: Users can add comments to the site. This fosters a sense of community engagement and collaboration.
 
 Read: Users can view comments left by others, facilitating communication and knowledge sharing within the platform.
