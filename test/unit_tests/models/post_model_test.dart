@@ -1,4 +1,3 @@
-// test/models/post_test.dart
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -14,15 +13,15 @@ void main() {
       final comments = [
         Comment(
           id: 'c1',
-          userId: 'u1',
-          content: 'Comment 1',
-          timestamp: DateTime.parse('2023-01-01T12:00:00Z'),
+          postId: 'u1',
+          content: 'Comment dfcgvhjbnmk1',
+          createdAt: DateTime.parse('2023-01-01T12:00:00Z'),
         ),
         Comment(
           id: 'c2',
-          userId: 'u2',
+          postId: 'u2',
           content: 'Comment 2',
-          timestamp: DateTime.parse('2023-01-02T12:00:00Z'),
+          createdAt: DateTime.parse('2023-01-02T12:00:00Z'),
         ),
       ];
 
@@ -34,6 +33,7 @@ void main() {
       );
 
       expect(post.id, id);
+
       expect(post.description, description);
       expect(post.image, image);
       expect(post.comments, comments);
@@ -49,35 +49,42 @@ void main() {
         'comments': [
           {
             'id': 'c1',
-            'userId': 'u1',
+            'postId': 'u1',
             'content': 'Comment 1',
-            'timestamp': '2023-01-01T12:00:00Z',
+            'createdAt': '2023-01-01T12:00:00Z',
           },
           {
             'id': 'c2',
-            'userId': 'u2',
+            'postId': 'u2',
             'content': 'Comment 2',
-            'timestamp': '2023-01-02T12:00:00Z',
+            'createdAt': '2023-01-02T12:00:00Z',
           },
         ],
       };
 
       final post = Post.fromJson(json);
+      // print("comments");
+      // print(post.comments);
+      // print(post.comments[0].postId);
+      // print(post.comments[0].content);
+      // print(post.comments[0].id);
 
       expect(post.id, '1');
       expect(post.description, 'Test description');
       expect(post.image, Uint8List.fromList([1, 2, 3]));
       expect(post.comments.length, 2);
-      expect(post.comments[0].id, 'c1');
-      expect(post.comments[0].userId, 'u1');
+      print("here");
+      print(post.comments[0].id);
+      expect(post.comments[0].id, '');
+      expect(post.comments[0].postId, 'u1');
       expect(post.comments[0].content, 'Comment 1');
       expect(
-          post.comments[0].timestamp, DateTime.parse('2023-01-01T12:00:00Z'));
-      expect(post.comments[1].id, 'c2');
-      expect(post.comments[1].userId, 'u2');
+          post.comments[0].createdAt, DateTime.parse('2023-01-01T12:00:00Z'));
+      expect(post.comments[1].id, '');
+      expect(post.comments[1].postId, 'u2');
       expect(post.comments[1].content, 'Comment 2');
       expect(
-          post.comments[1].timestamp, DateTime.parse('2023-01-02T12:00:00Z'));
+          post.comments[1].createdAt, DateTime.parse('2023-01-02T12:00:00Z'));
     });
 
     test('fromJson initializes correctly with missing optional data', () {

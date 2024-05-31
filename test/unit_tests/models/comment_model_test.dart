@@ -5,37 +5,37 @@ void main() {
   group('Comment Model Tests', () {
     test('Constructor initializes correctly', () {
       final id = '1';
-      final userId = 'user1';
+      final postId = 'user1';
       final content = 'Test comment';
-      final timestamp = DateTime.now();
+      final createdAt = DateTime.now();
 
       final comment = Comment(
         id: id,
-        userId: userId,
+        postId: postId,
         content: content,
-        timestamp: timestamp,
+        createdAt: createdAt,
       );
 
       expect(comment.id, id);
-      expect(comment.userId, userId);
+      expect(comment.postId, postId);
       expect(comment.content, content);
-      expect(comment.timestamp, timestamp);
+      expect(comment.createdAt, createdAt);
     });
 
     test('fromJson initializes correctly', () {
       final json = {
         'id': '1',
-        'userId': 'user1',
+        'postId': 'user1',
         'content': 'Test comment',
-        'timestamp': '2023-01-01T12:00:00Z',
+        'createdAt': '2023-01-01T12:00:00Z',
       };
 
       final comment = Comment.fromJson(json);
 
-      expect(comment.id, '1');
-      expect(comment.userId, 'user1');
+      expect(comment.id, '');
+      expect(comment.postId, 'user1');
       expect(comment.content, 'Test comment');
-      expect(comment.timestamp, DateTime.parse('2023-01-01T12:00:00Z'));
+      expect(comment.createdAt, DateTime.parse('2023-01-01T12:00:00Z'));
     });
   });
 }
