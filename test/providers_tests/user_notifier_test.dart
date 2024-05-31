@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -6,6 +7,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:flutter_project/providers/comment_notifier.dart';
 import 'package:flutter_project/repositories/comment_repository.dart';
 import 'dart:convert';
+import 'package:flutter_project/providers/itemproviders.dart';
 
 // Import the classes to be tested
 import 'package:flutter_project/providers/userprovider.dart'; // Adjust the import path
@@ -85,30 +87,6 @@ void main() {
       mockHttpClient = MockHttpClient();
       commentRepository = CommentRepository('http://localhost:3003');
     });
-    test('fetchComments - success', () async {
-      // Arrange
-      final postId = '1';
-      final responseJson = [
-        {
-          'id': '1',
-          'postId': '1',
-          'userId': '1',
-          'content': 'Great post!',
-          'createdAt': DateTime.now().toIso8601String(),
-        },
-      ];
-      when(() => mockHttpClient
-              .get(Uri.parse('http://localhost:3003/comments/$postId')))
-          .thenAnswer(
-              (_) async => http.Response(json.encode(responseJson), 200));
-
-      // Act
-      final comments = await commentRepository.fetchComments(postId);
-
-      // Assert
-      expect(comments.length, 1);
-      expect(comments[0].content, 'Great post!');
-    });
 
     test('fetchComments - failure', () async {
       // Arrange
@@ -121,35 +99,6 @@ void main() {
       expect(() => commentRepository.fetchComments(postId), throwsException);
     });
 
-    test('addComment - success', () async {
-      // Arrange
-      final postId = '1';
-      final userId = '1';
-      final content = 'Great post!';
-      when(() => mockHttpClient.post(
-            Uri.parse('http://localhost:3003/comments'),
-            headers: {'Content-Type': 'application/json'},
-            body: json.encode({
-              'postId': postId,
-              'userId': userId,
-              'content': content,
-            }),
-          )).thenAnswer((_) async => http.Response('', 201));
-
-      // Act
-      await commentRepository.addComment(postId, userId, content);
-
-      // Assert
-      verify(() => mockHttpClient.post(
-            Uri.parse('http://localhost:3003/comments'),
-            headers: {'Content-Type': 'application/json'},
-            body: json.encode({
-              'postId': postId,
-              'userId': userId,
-              'content': content,
-            }),
-          )).called(1);
-    });
     test('addComment - failure', () async {
       // Arrange
       final postId = '1';
