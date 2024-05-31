@@ -25,7 +25,7 @@ void main() {
       // Arrange
       final initialUser = User(
           id: '001',
-          name: 'John Doe',
+          fullname: 'John Doe',
           email: 'john@example.com',
           password: 'secure123');
       final userNotifier = UserNotifier(initialUser);
@@ -34,7 +34,7 @@ void main() {
       userNotifier.updateUser(name: 'Jane Doe', email: 'jane@example.com');
 
       // Assert
-      expect(userNotifier.state.name, 'Jane Doe');
+      expect(userNotifier.state.fullname, 'Jane Doe');
       expect(userNotifier.state.email, 'jane@example.com');
       expect(userNotifier.state.password,
           'secure123'); // Ensure password remains unchanged
@@ -51,7 +51,7 @@ void main() {
 
       // Assert
       expect(user.id, '001');
-      expect(user.name, 'John Doe');
+      expect(user.fullname, 'John Doe');
       expect(user.email, 'john@example.com');
       expect(user.password, 'secure123');
     });
@@ -61,7 +61,7 @@ void main() {
       final container = ProviderContainer();
       final newUser = User(
           id: '001',
-          name: 'Jane Doe',
+          fullname: 'Jane Doe',
           email: 'jane@example.com',
           password: 'newPassword');
 
@@ -73,7 +73,7 @@ void main() {
       // Assert
       print(container.read(userProvider).email);
       print(container.read(userProvider).id);
-      print(container.read(userProvider).name);
+      print(container.read(userProvider).fullname);
 
       expect(container.read(userProvider).id, newUser.id);
     });

@@ -13,13 +13,13 @@ void main() {
 
       final user = User(
         id: id,
-        name: name,
+        fullname: name,
         email: email,
         password: password,
       );
 
       expect(user.id, id);
-      expect(user.name, name);
+      expect(user.fullname, name);
       expect(user.email, email);
       expect(user.password, password);
     });
@@ -27,7 +27,7 @@ void main() {
     test('copyWith updates correctly', () {
       final user = User(
         id: '1',
-        name: 'John Doe',
+        fullname: 'John Doe',
         email: 'john.doe@example.com',
         password: 'password123',
       );
@@ -36,7 +36,7 @@ void main() {
           user.copyWith(name: 'Jane Doe', email: 'jane.doe@example.com');
 
       expect(updatedUser.id, user.id);
-      expect(updatedUser.name, 'Jane Doe');
+      expect(updatedUser.fullname, 'Jane Doe');
       expect(updatedUser.email, 'jane.doe@example.com');
       expect(updatedUser.password,
           user.password); // Ensure password remains unchanged
@@ -45,7 +45,7 @@ void main() {
     test('copyWith with no arguments returns identical user', () {
       final user = User(
         id: '1',
-        name: 'John Doe',
+        fullname: 'John Doe',
         email: 'john.doe@example.com',
         password: 'password123',
       );
@@ -53,7 +53,7 @@ void main() {
       final identicalUser = user.copyWith();
 
       expect(identicalUser.id, user.id);
-      expect(identicalUser.name, user.name);
+      expect(identicalUser.fullname, user.fullname);
       expect(identicalUser.email, user.email);
       expect(identicalUser.password, user.password);
     });
