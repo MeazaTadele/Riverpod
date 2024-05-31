@@ -62,7 +62,6 @@ void main() {
     expect(button.style?.backgroundColor?.resolve({}), Colors.blue[400]);
   });
 
-
   testWidgets('Scrolling behavior of SingleChildScrollView',
       (WidgetTester tester) async {
     await tester

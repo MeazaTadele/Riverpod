@@ -41,6 +41,8 @@ dependencies:
   go_router: ^5.0.0
   flutter_secure_storage: ^9.2.2
   jwt_decoder: ^2.0.1
+  http_mock_adapter: ^0.6.1
+  mocktail: ^1.0.3
   
 
 
@@ -50,6 +52,13 @@ dev_dependencies:
     sdk: flutter
   
   provider: ^6.1.2
+  build_runner: ^2.4.9
+  mockito: ^5.4.4
+  test: ^1.24.9
+  flutter_driver:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
