@@ -1,0 +1,1 @@
+{"version":3,"file":"comment.schema.js","sourceRoot":"","sources":["../../../../src/comments/schema/comment.schema.ts"],"names":[],"mappings":";;;AACA,qCAAqC;AAExB,QAAA,aAAa,GAAG,IAAI,QAAQ,CAAC,MAAM,CAAC;IAC/C,MAAM,EAAE,QAAQ,CAAC,MAAM,CAAC,KAAK,CAAC,QAAQ;IACtC,OAAO,EAAE,MAAM;CAChB,EAAE,EAAE,UAAU,EAAE,IAAI,EAAE,CAAC,CAAC"}
